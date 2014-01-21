@@ -4,6 +4,7 @@ var EOL = require('os').EOL;
 
 var CleanCSS = require('clean-css');
 var uglify = require('uglify-js');
+var less = require('less');
 var htmlmin = require('minimize');
 var through = require('through2');
 var gutil = require('gulp-util');
@@ -18,7 +19,9 @@ module.exports = function (options) {
 	var endReg = /<!--\s*endbuild\s*-->/gim;
 	var jsReg = /<\s*script\s+.*src\s*=\s*"([^"]+)".*><\s*\/\s*script\s*>/gi;
 	var cssReg = /<\s*link\s+.*href\s*=\s*"([^"]+)".*>/gi;
-	var mainPath, mainName;
+	var basePath, mainPath, mainName;
+
+	basePath = path.resolve('./');
 
 	function createFile(name, content) {
 		return new gutil.File({
@@ -34,7 +37,16 @@ module.exports = function (options) {
 		content
 			.replace(/<!--(?:(?:.|\r|\n)*?)-->/gim, '')
 			.replace(reg, function (a, b) {
-				paths.push(path.join(mainPath, b));
+				var filePath = path.join(basePath, path.resolve(mainPath, b));
+
+				var extname = path.extname(b);
+				if (extname == '.less') {
+					less.render(fs.readFileSync(filePath, {encoding: 'utf8'}), function(e, css) {
+						buffer.push(css);
+					});
+				} else {
+					paths.push(filePath);
+				}
 			});
 
 		for (var i = 0, l = paths.length; i < l; ++i)
@@ -69,7 +81,6 @@ module.exports = function (options) {
 		for (var i = 0, l = sections.length; i < l; ++i)
 			if (sections[i].match(startReg)) {
 				var section = sections[i].split(startReg);
-
 				html.push(section[0]);
 
 				if (section[1] == 'js') {

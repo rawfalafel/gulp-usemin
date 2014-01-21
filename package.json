@@ -1,39 +1,40 @@
 {
-	"name": "gulp-usemin",
-	"version": "0.1.1",
-	"description": "Replaces references to non-optimized scripts or stylesheets into a set of HTML files (or any templates/views).",
-	"main": "index.js",
-	"dependencies": {
-		"clean-css": "latest",
-		"gulp-util": "latest",
-		"minimize": "latest",
-		"through2": "latest",
-		"uglify-js": "latest"
-	},
-	"devDependencies": {
-		"event-stream": "latest",
-		"gulp": "latest",
-		"gulp-jshint": "latest",
-		"gulp-mocha": "latest",
-		"gulp-util": "latest"
-	},
-	"scripts": {
-		"test": "mocha"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git://github.com/zont/gulp-usemin.git"
-	},
-	"keywords": [
-		"gulpplugin",
-		"usemin"
-	],
-	"author": "Alexander Zonov <zont@pochta.ru>",
-	"license": "MIT",
-	"bugs": {
-		"url": "https://github.com/zont/gulp-usemin/issues"
-	},
-	"engines": {
-		"node": ">=0.8"
-	}
+  "name": "gulp-usemin",
+  "version": "0.1.1",
+  "description": "Replaces references to non-optimized scripts or stylesheets into a set of HTML files (or any templates/views).",
+  "main": "index.js",
+  "dependencies": {
+    "clean-css": "latest",
+    "gulp-util": "latest",
+    "less": "~1.6.1",
+    "minimize": "latest",
+    "through2": "latest",
+    "uglify-js": "latest"
+  },
+  "devDependencies": {
+    "event-stream": "latest",
+    "gulp": "latest",
+    "gulp-jshint": "latest",
+    "gulp-mocha": "latest",
+    "gulp-util": "latest"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/zont/gulp-usemin.git"
+  },
+  "keywords": [
+    "gulpplugin",
+    "usemin"
+  ],
+  "author": "Alexander Zonov <zont@pochta.ru>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zont/gulp-usemin/issues"
+  },
+  "engines": {
+    "node": ">=0.8"
+  }
 }
